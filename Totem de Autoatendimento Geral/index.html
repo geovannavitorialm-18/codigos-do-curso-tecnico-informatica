@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Totem UBS Palmital de Minas</title>
+  <!-- Fontes do Google e Ícones FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ESTRUTURA DO TOTEM VERTICAL -->
+  <div class="kiosk-frame">
+    
+    <!-- CABEÇALHO -->
+    <header class="kiosk-header">
+      <div class="header-brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-hospital-user"></i>
+        </div>
+        <div class="brand-titles">
+          <h1>UBS de Palmital de Minas</h1>
+          <p>Unidade Básica de Saúde • Autoatendimento</p>
+        </div>
+      </div>
+      
+      <!-- Painel de Acessibilidade -->
+      <div class="accessibility-bar">
+        <button id="tts-toggle-btn" class="acc-btn" type="button" title="Ativar/Desativar Leitura por Voz">
+          <i class="fa-solid fa-volume-high"></i>
+          <span class="acc-label">Voz: <strong id="tts-status">LIGADA</strong></span>
+        </button>
+        <button id="font-increase" class="acc-btn" type="button" title="Aumentar Fonte">
+          <i class="fa-solid fa-text-height"></i> A+
+        </button>
+        <button id="font-reset" class="acc-btn" type="button" title="Fonte Padrão">
+          <i class="fa-solid fa-rotate-left"></i> A
+        </button>
+        <button id="font-decrease" class="acc-btn" type="button" title="Diminuir Fonte">
+          A-
+        </button>
+      </div>
+
+      <div class="header-time">
+        <span id="current-clock">00:00:00</span>
+        <span id="current-date">--/--/----</span>
+      </div>
+    </header>
+
+    <!-- ÁREA DE CONTEÚDO DAS TELAS -->
+    <main class="kiosk-body">
+
+      <!-- TELA 1: INICIAL / BOAS-VINDAS -->
+      <section id="screen-welcome" class="screen active">
+        <div class="welcome-card">
+          <div class="welcome-badge">
+            <i class="fa-solid fa-heart-pulse"></i> Atendimento Comunitário
+          </div>
+          <h2>Bem-vindo!</h2>
+          <p class="welcome-subtitle">Como podemos ajudar você hoje?</p>
+          <div class="welcome-illustration">
+            <i class="fa-solid fa-hand-holding-medical"></i>
+          </div>
+          <p class="welcome-instruction">
+            <i class="fa-solid fa-hand-pointer"></i> Toque no botão abaixo para escolher o atendimento desejado.
+          </p>
+          <button id="btn-start" class="btn-primary-kiosk" type="button">
+            <i class="fa-solid fa-circle-play"></i> Iniciar Atendimento
+          </button>
+        </div>
+      </section>
+
+      <!-- TELA 2: MENU PRINCIPAL DE SERVIÇOS -->
+      <section id="screen-menu" class="screen">
+        <div class="screen-title-banner">
+          <h2><i class="fa-solid fa-list-check"></i> Selecione o Serviço Desejado</h2>
+          <p>Toque na opção para obter informações ou retirar sua senha</p>
+        </div>
+
+        <div class="services-grid">
+          <button class="service-card" type="button" data-target="screen-consultas">
+            <div class="icon-wrapper blue"><i class="fa-solid fa-user-doctor"></i></div>
+            <div class="service-info">
+              <h3>Consultas Médicas</h3>
+              <p>Agendamentos, orientações e retornos</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+
+          <button class="service-card" type="button" data-target="screen-vacinacao">
+            <div class="icon-wrapper green"><i class="fa-solid fa-syringe"></i></div>
+            <div class="service-info">
+              <h3>Vacinação</h3>
+              <p>Calendário de vacinas e sala de vacinação</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+
+          <button class="service-card" type="button" data-target="screen-enfermagem">
+            <div class="icon-wrapper teal"><i class="fa-solid fa-user-nurse"></i></div>
+            <div class="service-info">
+              <h3>Enfermagem</h3>
+              <p>Curativos, triagem, pressão e glicemia</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+
+          <button class="service-card" type="button" data-target="screen-prenatal">
+            <div class="icon-wrapper pink"><i class="fa-solid fa-person-pregnant"></i></div>
+            <div class="service-info">
+              <h3>Pré-natal</h3>
+              <p>Acompanhamento prioritário de gestantes</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+
+          <button class="service-card" type="button" data-target="screen-documentos">
+            <div class="icon-wrapper orange"><i class="fa-solid fa-id-card"></i></div>
+            <div class="service-info">
+              <h3>Documentos Necessários</h3>
+              <p>O que trazer para o seu atendimento</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+
+          <button class="service-card" type="button" data-target="screen-localizacao">
+            <div class="icon-wrapper purple"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div class="service-info">
+              <h3>Localização dos Setores</h3>
+              <p>Guia das salas do prédio da UBS</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+
+          <button class="service-card highlight-card" type="button" data-target="screen-ajuda">
+            <div class="icon-wrapper yellow"><i class="fa-solid fa-circle-question"></i></div>
+            <div class="service-info">
+              <h3>Ajuda & Dúvidas</h3>
+              <p>Instruções gerais e suporte presencial</p>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow-icon"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- TELA 3.1: CONSULTAS MÉDICAS -->
+      <section id="screen-consultas" class="screen">
+        <div class="screen-card">
+          <div class="card-header blue">
+            <i class="fa-solid fa-user-doctor"></i>
+            <h2>Consultas Médicas</h2>
+          </div>
+          <div class="card-body">
+            <div class="info-alert">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Apresente-se com 15 minutos de antecedência na recepção para consultas agendadas.</span>
+            </div>
+            <ul class="info-list">
+              <li><strong>Atendimento Clínico Geral:</strong> Avaliação e consultas de rotina.</li>
+              <li><strong>Sintomas Leves:</strong> Dirija-se à triagem para encaminhamento.</li>
+              <li><strong>Documentos:</strong> Documento oficial com foto e Cartão do SUS.</li>
+            </ul>
+            <div class="action-box">
+              <p>Deseja retirar uma senha para a <strong>Recepção de Consultas</strong>?</p>
+              <button class="btn-action blue btn-emit-ticket" type="button" data-service="Consultas Médicas" data-prefix="CON">
+                <i class="fa-solid fa-ticket"></i> Emitir Senha de Atendimento
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 3.2: VACINAÇÃO -->
+      <section id="screen-vacinacao" class="screen">
+        <div class="screen-card">
+          <div class="card-header green">
+            <i class="fa-solid fa-syringe"></i>
+            <h2>Sala de Vacinação</h2>
+          </div>
+          <div class="card-body">
+            <div class="info-alert">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Traga sempre sua caderneta ou cartão de vacinas para atualização.</span>
+            </div>
+            <ul class="info-list">
+              <li><strong>Vacinas de Rotina:</strong> Disponíveis para todas as faixas etárias.</li>
+              <li><strong>Campanhas:</strong> Consulte a equipe para informações sobre vacinas da época.</li>
+              <li><strong>Atendimento:</strong> Por ordem de chegada com senha.</li>
+            </ul>
+            <div class="action-box">
+              <p>Retire sua senha para a <strong>Sala de Vacinas</strong>:</p>
+              <button class="btn-action green btn-emit-ticket" type="button" data-service="Vacinação" data-prefix="VAC">
+                <i class="fa-solid fa-ticket"></i> Emitir Senha para Vacina
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TELA 3.3: ENFERMAGEM -->
+      <section id="screen-enfermagem" class="screen">
+        <div class="screen-card">
+          <div class="card-header teal">
+            <i class="fa-solid fa-user-nurse"></i>
+            <h2>Serviços de Enfermagem</h2>
+          </div>
+          <div class="card-body">
+            <div class="info-alert">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Repouse por 15 minutos na recepção antes de aferir a pressão arterial.</span>
+            </div>
+            <div class="services-bullets">
+              <div class="bullet-item"><i class="fa-solid fa-check"></i> Aferição de Pressão Arterial</div>
+              <div class="bullet-item"><i class="fa-solid fa-check"></i> Teste de Glicemia Capilar</div>
+              <div class="bullet-item"><i class="fa-solid fa
